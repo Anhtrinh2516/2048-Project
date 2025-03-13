@@ -2,38 +2,11 @@
 #include <cmath>
 #include <algorithm>
 
-void Graphics::drawRoundedRect(SDL_Renderer* renderer, const SDL_Rect& rect, const SDL_Color& color, bool isHovered) {
-    SDL_Color finalColor = isHovered ? BUTTON_HOVER : color;
-    SDL_SetRenderDrawColor(renderer, finalColor.r, finalColor.g, finalColor.b, finalColor.a);
-    
-    int radius = CORNER_RADIUS;
-    
-    // Vẽ phần chính giữa
-    SDL_Rect centerRect = {
-        rect.x + radius,
-        rect.y,
-        rect.w - 2 * radius,
-        rect.h
-    };
-    SDL_RenderFillRect(renderer, &centerRect);
-    
-    // Vẽ hai bên
-    SDL_Rect leftRect = {rect.x, rect.y + radius, radius, rect.h - 2 * radius};
-    SDL_Rect rightRect = {rect.x + rect.w - radius, rect.y + radius, radius, rect.h - 2 * radius};
-    SDL_RenderFillRect(renderer, &leftRect);
-    SDL_RenderFillRect(renderer, &rightRect);
-    
-    // Vẽ các góc bo tròn
-    for (int i = 0; i <= radius; i++) {
-        for (int j = 0; j <= radius; j++) {
-            float distance = sqrt((float)(i * i + j * j));
-            if (distance <= radius) {
-                SDL_RenderDrawPoint(renderer, rect.x + radius - i, rect.y + radius - j);
-                SDL_RenderDrawPoint(renderer, rect.x + rect.w - radius + i - 1, rect.y + radius - j);
-                SDL_RenderDrawPoint(renderer, rect.x + radius - i, rect.y + rect.h - radius + j - 1);
-                SDL_RenderDrawPoint(renderer, rect.x + rect.w - radius + i - 1, rect.y + rect.h - radius + j - 1);
-            }
-        }
+namespace Graphics {
+    void drawRoundedRect(SDL_Renderer* renderer, const SDL_Rect& rect, SDL_Color color, bool isHovered) {
+        SDL_Color finalColor = isHovered ? BUTTON_HOVER : color;
+        SDL_SetRenderDrawColor(renderer, finalColor.r, finalColor.g, finalColor.b, finalColor.a);
+        SDL_RenderFillRect(renderer, &rect);
     }
 }
 
