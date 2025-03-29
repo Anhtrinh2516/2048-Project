@@ -64,25 +64,6 @@ make
 - Mục tiêu là đạt được ô có giá trị 2048
 - Game kết thúc khi không còn nước đi hợp lệ
 
-## Cấu trúc dự án
-
-```
-.
-├── src/
-│   ├── main.cpp
-│   ├── Game2048.cpp
-│   ├── Game2048.h
-│   ├── Graphics.cpp
-│   ├── Graphics.h
-│   ├── Sound.cpp
-│   └── Sound.h
-├── assets/
-│   ├── fonts/
-│   │   └── arial.ttf
-│   └── sounds/
-├── Makefile
-└── README.md
-```
 
 ## Giấy phép
 
